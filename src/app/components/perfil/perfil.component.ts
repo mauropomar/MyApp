@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -9,14 +10,29 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 })
 export class PerfilComponent implements OnInit {
   perfilForm: FormGroup;
+  phone1:number;
+  phone2:number;
+  email:string;
   host: any;
-  constructor(private formBuilder: FormBuilder) { }
+  encab:string;
+  constructor(private formBuilder: FormBuilder) {
+    
+   }
 
-  ngOnInit(): void {
-    this.perfilForm = this.formBuilder.group({
-      'host': [this.host, [
-        Validators.required
-      ]]
-    })
+   ngOnInit() {
+    this.perfilForm = new FormGroup({
+      host: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+      phone1 : new FormControl('', [Validators.required, Validators.pattern("[0-9 ]{6}")]),
+      phone2 : new FormControl('', [Validators.required, Validators.pattern("[0-9 ]{6}")]),
+      email : new FormControl('', [Validators.required, Validators.email])
+    });
+  }
+
+  public checkError = (controlName: string, errorName: string) => {
+    return this.perfilForm.controls[controlName].hasError(errorName);
+  }
+
+  public hideMatHint = (controlName: string, errorName: string) => {
+    return this.perfilForm.controls[controlName].hasError(errorName);
   }
 }

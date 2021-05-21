@@ -1,6 +1,7 @@
 .x-title{
     text-align: center;
-    background-color: beige
+    background-color: beige;
+    padding-bottom: 10px; 
 }
 
 .example-form-field {
@@ -10,4 +11,13 @@
 .example-container {
     display: flex;
     flex-direction: column;
-  }
+}
+
+mat-hint {
+  color: red
+}
+
+.x-encab {
+    text-align: center;
+    padding-bottom: 20px; 
+}
