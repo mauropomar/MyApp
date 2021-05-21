@@ -1,1 +1,7 @@
-<p>perfil works!</p>
+<div class="x-title">INFORMACION BASICA DE CORREDOR/VENDEDOR</div>
+
+<form class="example-container" [formGroup]="perfilForm">
+    <mat-form-field>
+      <input matInput placeholder="Host" [(ngModel)]="host" formControlName="host" maxlength="50" autofocus>
+    </mat-form-field>
+  </form>

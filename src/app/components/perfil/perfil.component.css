@@ -1,0 +1,13 @@
+.x-title{
+    text-align: center;
+    background-color: beige
+}
+
+.example-form-field {
+    width: 100%;
+  }
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
