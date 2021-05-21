@@ -9,6 +9,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatCardModule} from '@angular/material/card';
 
 
 import { PerfilComponent } from './components/perfil/perfil.component';
@@ -31,6 +34,9 @@ import { HomeComponent } from './components/home/home.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatGridListModule,
+    FlexLayoutModule,
+    MatCardModule
   ],
   exports:[
     

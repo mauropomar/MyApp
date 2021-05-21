@@ -1,44 +1,71 @@
-<div class="x-encab">CREAR TU PERFIL DE CORREDOR/VENDEDOR</div>
 <div class="x-title">INFORMACION BASICA DE CORREDOR/VENDEDOR</div>
+<div fxLayout="row wrap" fxLayout.xs="column">
+    <mat-card fxFlex="50%;" fxFlex.xs="80%">
+        <div class="x-encab">CREAR TU PERFIL DE CORREDOR/VENDEDOR</div>
+        <form class="example-container" [formGroup]="perfilForm">
+            <mat-form-field appearance="fill">
+                <mat-label>Host</mat-label>
+                <input matInput placeholder="Host" [(ngModel)]="host" formControlName="host" maxlength="50" autofocus
+                    required>
+                <mat-error *ngIf="checkError('host', 'required')">Este campo es requerido</mat-error>
+                <mat-error *ngIf="checkError('host', 'minlength')">El minimo de caracteres es 3</mat-error>
+                <mat-error *ngIf="checkError('host', 'maxlength')">El máximo de caracteres es 20</mat-error>
+                <mat-hint *ngIf="checkError('host', 'required')" align="end">Este campo es obligatorio</mat-hint>
 
-<form class="example-container" [formGroup]="perfilForm">
-    <mat-form-field appearance="fill">
-        <mat-label>Host</mat-label>
-        <input matInput placeholder="Host" [(ngModel)]="host" formControlName="host" maxlength="50" autofocus required>
-        <mat-error *ngIf="checkError('host', 'required')">Este campo es requerido</mat-error>
-        <mat-error *ngIf="checkError('host', 'minlength')">El minimo de caracteres es 3</mat-error>
-        <mat-error *ngIf="checkError('host', 'maxlength')">El máximo de caracteres es 20</mat-error>
-        <mat-hint *ngIf="checkError('host', 'required')" align="end">Este campo es obligatorio</mat-hint>
-      
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Télefono de contacto 1</mat-label>
-        <input matInput placeholder="Ejemplo:542124. Escriba solo números sin espacios" [(ngModel)]="phone1" formControlName="phone1" maxlength="50"
-        autofocus required>
-        <mat-error *ngIf="checkError('phone1', 'required')">Este campo es requerido</mat-error>
-        <mat-error *ngIf="checkError('phone1', 'pattern')">El número de télefono es incorrecto. Debe tener 6 dígitos</mat-error>
-        <mat-hint *ngIf="checkError('phone1', 'required')" align="end">Este campo es obligatorio</mat-hint>
-      </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Télefono de contacto 2</mat-label>
-        <input matInput placeholder="Ejemplo:542124. Escriba solo números sin espacios" [(ngModel)]="phone2" formControlName="phone2" maxlength="50"
-        autofocus required>
-        <mat-error *ngIf="checkError('phone2', 'required')">Este campo es requerido</mat-error>
-        <mat-error *ngIf="checkError('phone2', 'pattern')">El número de télefono es incorrecto. Debe tener 6 dígitos</mat-error>
-        <mat-hint *ngIf="checkError('phone2', 'required')" align="end">Este campo es obligatorio</mat-hint>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Correo</mat-label>
-        <input matInput placeholder="pat@example.com" [(ngModel)]="email" formControlName="email" maxlength="50"
-        required>
-        <mat-error *ngIf="checkError('email', 'required')">Este campo es requerido</mat-error>
-        <mat-error *ngIf="checkError('email', 'email')">El correo es incorrecto</mat-error>
-        <mat-hint *ngIf="checkError('email', 'required')" align="end">Este campo es obligatorio</mat-hint>
-        </mat-form-field>
-        <section> 
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Télefono de contacto 1</mat-label>
+                <input matInput placeholder="Ejemplo:542124. Escriba solo números sin espacios" [(ngModel)]="phone1"
+                    formControlName="phone1" maxlength="50" autofocus required>
+                <mat-error *ngIf="checkError('phone1', 'required')">Este campo es requerido</mat-error>
+                <mat-error *ngIf="checkError('phone1', 'pattern')">El número de télefono es incorrecto. Debe tener 6
+                    dígitos</mat-error>
+                <mat-hint *ngIf="checkError('phone1', 'required')" align="end">Este campo es obligatorio</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Télefono de contacto 2</mat-label>
+                <input matInput placeholder="Ejemplo:542124. Escriba solo números sin espacios" [(ngModel)]="phone2"
+                    formControlName="phone2" maxlength="50" autofocus required>
+                <mat-error *ngIf="checkError('phone2', 'required')">Este campo es requerido</mat-error>
+                <mat-error *ngIf="checkError('phone2', 'pattern')">El número de télefono es incorrecto. Debe tener 6
+                    dígitos</mat-error>
+                <mat-hint *ngIf="checkError('phone2', 'required')" align="end">Este campo es obligatorio</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Correo</mat-label>
+                <input matInput placeholder="pat@example.com" [(ngModel)]="email" formControlName="email" maxlength="50"
+                    required>
+                <mat-error *ngIf="checkError('email', 'required')">Este campo es requerido</mat-error>
+                <mat-error *ngIf="checkError('email', 'email')">El correo es incorrecto</mat-error>
+                <mat-hint *ngIf="checkError('email', 'required')" align="end">Este campo es obligatorio</mat-hint>
+            </mat-form-field>
+            <section>
                 <div class="example-button-row" style="text-align:right">
-                  <button mat-raised-button color="primary" [disabled]="!perfilForm.valid"><mat-icon>save</mat-icon>Guardar</button>    
-                  <button mat-raised-button color="warn"><mat-icon>cancel</mat-icon>Cancelar</button>   
+                    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!perfilForm.valid">
+                        <mat-icon>save</mat-icon>Guardar
+                    </button>
+                    <button mat-raised-button color="warn">
+                        <mat-icon>cancel</mat-icon>Cancelar
+                    </button>
                 </div>
-              </section>
-</form>
+            </section>
+        </form>
+    </mat-card>
+
+    <mat-card fxFlex="50%;" fxFlex.xs="80%">
+            <div class="x-encab">ACTUALIZA TU PERFIL DE CORREDOR/VENDEDOR</div>
+        <div class='x-card-description'><strong>Host:</strong>{{hostCard}}</div>
+        <div class='x-card-description'><strong>Telefono de Contacto 1:</strong>{{phone1Card}}</div>
+        <div class='x-card-description'><strong>Telefono de Contacto 2:</strong>{{phone2Card}}</div>
+        <div class='x-card-description'><strong>Correo:</strong>{{emailCard}}</div>
+        <section>
+                <div class="example-button-row">
+                    <button mat-raised-button color="primary" (click)="onEdit()" [disabled]="editForm">
+                        <mat-icon>edit</mat-icon>Editar
+                    </button>
+                </div>
+            </section>
+    </mat-card>
+
+
+</div>

@@ -21,3 +21,7 @@ mat-hint {
     text-align: center;
     padding-bottom: 20px; 
 }
+
+.x-card-description {
+  margin-bottom: 20px;
+}
