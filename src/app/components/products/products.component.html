@@ -1,0 +1,41 @@
+<form class="example-container" [formGroup]="productForm">
+    <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+        <mat-form-field fxFlex appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" placeholder="Nombre" formControlName="name" autofocus required>
+        </mat-form-field>
+        <mat-form-field fxFlex appearance="fill">
+            <mat-label>Precio</mat-label>
+            <input matInput type="number" placeholder="Precio" formControlName="price">
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+        <mat-form-field fxFlex appearance="fill">
+            <mat-label>Descripción</mat-label>
+            <input matInput type="text" placeholder="Descripción" formControlName="description">
+        </mat-form-field>
+    </div>
+    <div class="x-mat-radio-group">
+        <mat-radio-group aria-label="Select an option">
+            <mat-label class="x-mat-label">Tipo</mat-label>
+            <mat-radio-button [value]="1" [checked]="defaultSelect" (change)="selection = $event.value">Ingrediente</mat-radio-button>
+            <mat-radio-button [value]="2" (change)="selection = $event.value">Complemento</mat-radio-button>
+            <mat-radio-button [value]="3" (change)="selection = $event.value">Bebida</mat-radio-button>
+        </mat-radio-group>
+    </div>
+</form>
+<button mat-raised-button color="primary" (click)="addItem()" [disabled]="!productForm.valid">
+    <mat-icon>add</mat-icon>Agregar
+</button>
+
+<div [formGroup]="orderForm">
+    <div formArrayName="items" *ngFor="let item of orderForm.get('items')?.controls; let i = index;">
+        <div [formGroupName]="i" style="padding-bottom:10px;">
+            <mat-form-field fxFlex appearance="fill">
+                <mat-label>{{labelProduct}}</mat-label>
+                  <input matInput type="text" placeholder="Nombre" formControlName="name" autofocus required>
+                  <mat-icon matSuffix>delete</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
